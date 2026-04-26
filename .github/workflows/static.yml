@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beech Mountain Retreats — Abril & Christopher</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --forest: #1a2e1f;
+    --pine: #2d4a35;
+    --moss: #5a7d5f;
+    --sage: #8faa8b;
+    --cream: #f5f0e8;
+    --warm: #e8dfd0;
+    --gold: #c9a84c;
+    --gold-light: #dfc67a;
+    --snow: #ffffff;
+    --bark: #3d2b1f;
+    --stone: #6b6259;
+  }
+ 
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--forest);
+    overflow-x: hidden;
+  }
+ 
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+    background: linear-gradient(170deg, var(--forest) 0%, var(--pine) 40%, var(--moss) 100%);
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 20% 80%, rgba(201,168,76,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 80% 20%, rgba(255,255,255,0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: -10%;
+    left: 0;
+    width: 100%;
+    height: 120%;
+    background-image:
+      radial-gradient(2px 2px at 10% 15%, rgba(255,255,255,0.4), transparent),
+      radial-gradient(2px 2px at 25% 35%, rgba(255,255,255,0.3), transparent),
+      radial-gradient(1px 1px at 40% 60%, rgba(255,255,255,0.5), transparent),
+      radial-gradient(2px 2px at 55% 20%, rgba(255,255,255,0.35), transparent),
+      radial-gradient(1px 1px at 70% 75%, rgba(255,255,255,0.4), transparent),
+      radial-gradient(2px 2px at 85% 40%, rgba(255,255,255,0.25), transparent),
+      radial-gradient(1px 1px at 15% 80%, rgba(255,255,255,0.5), transparent),
+      radial-gradient(2px 2px at 60% 90%, rgba(255,255,255,0.3), transparent),
+      radial-gradient(1px 1px at 90% 10%, rgba(255,255,255,0.45), transparent),
+      radial-gradient(2px 2px at 35% 50%, rgba(255,255,255,0.2), transparent);
+    background-size: 300px 400px;
+    animation: snowfall 12s linear infinite;
+    pointer-events: none;
+  }
+  @keyframes snowfall {
+    0% { transform: translateY(-10%); }
+    100% { transform: translateY(10%); }
+  }
+ 
+  .hero-badge {
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    color: var(--snow);
+    line-height: 1.1;
+    max-width: 800px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero h1 em { font-style: italic; color: var(--gold-light); }
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--sage);
+    margin-top: 1.5rem;
+    max-width: 500px;
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 3rem;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-stat { text-align: center; color: var(--snow); }
+  .hero-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--gold);
+  }
+  .hero-stat-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-top: 0.3rem;
+  }
+  .scroll-cue {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    animation: bounce 2s ease infinite;
+  }
+  .scroll-cue svg { width: 28px; height: 28px; stroke: var(--sage); }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+ 
+  /* PROPERTIES */
+  .properties {
+    padding: 5rem 2rem;
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+  .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--forest);
+  }
+  .section-header p {
+    color: var(--stone);
+    margin-top: 0.8rem;
+    max-width: 550px;
+    margin-inline: auto;
+    line-height: 1.6;
+  }
+ 
+  /* FEATURED CARD */
+  .featured-card {
+    background: var(--snow);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 8px 60px rgba(26,46,31,0.15);
+    margin-bottom: 5rem;
+    position: relative;
+    border: 2px solid var(--gold);
+  }
+  .featured-ribbon {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    background: var(--gold);
+    color: var(--forest);
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 700;
+    z-index: 2;
+  }
+  .featured-gallery {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 6px;
+    height: 480px;
+  }
+  .featured-gallery img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .featured-gallery img:hover { transform: scale(1.03); }
+  .featured-gallery img:first-child { grid-row: 1 / -1; }
+ 
+  .featured-content {
+    padding: 3rem;
+    text-align: center;
+  }
+  .featured-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.3rem;
+    color: var(--forest);
+    line-height: 1.2;
+    margin-bottom: 0.8rem;
+  }
+  .featured-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .featured-desc {
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    color: var(--stone);
+    line-height: 1.7;
+    font-size: 1rem;
+  }
+  .featured-highlights {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.2rem;
+    max-width: 900px;
+    margin: 0 auto 2rem;
+  }
+  .featured-highlights .highlight {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1.2rem 0.8rem;
+    background: var(--cream);
+    border-radius: 12px;
+  }
+  .featured-highlights .highlight-icon {
+    width: 42px;
+    height: 42px;
+    font-size: 1.2rem;
+  }
+  .featured-highlights .highlight-text {
+    font-size: 0.8rem;
+    color: var(--forest);
+    line-height: 1.4;
+  }
+ 
+  /* PROPERTY CARD */
+  .property-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin-bottom: 5rem;
+    border-radius: 20px;
+    overflow: hidden;
+    background: var(--snow);
+    box-shadow: 0 4px 40px rgba(26,46,31,0.08);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+  .property-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 50px rgba(26,46,31,0.14);
+  }
+  .property-card.reverse { direction: rtl; }
+  .property-card.reverse > * { direction: ltr; }
+ 
+  .card-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 4px;
+    min-height: 420px;
+  }
+  .card-gallery img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .card-gallery img:hover { transform: scale(1.05); }
+  .card-gallery img:first-child { grid-column: 1 / -1; }
+ 
+  .card-content {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .card-type {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--moss);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  .card-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--forest);
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+  }
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+  .card-rating {
+    background: var(--forest);
+    color: var(--gold);
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.25rem 0.6rem;
+    border-radius: 6px;
+  }
+  .card-details {
+    font-size: 0.82rem;
+    color: var(--stone);
+  }
+  .card-desc {
+    font-size: 0.92rem;
+    color: var(--stone);
+    line-height: 1.65;
+    margin-bottom: 1.3rem;
+  }
+  .highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 1.5rem;
+  }
+  .highlight {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    color: var(--forest);
+  }
+  .highlight-icon {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    background: linear-gradient(135deg, var(--pine), var(--moss));
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    color: var(--snow);
+  }
+  .card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--forest);
+    color: var(--snow);
+    padding: 0.8rem 1.8rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+  }
+  .card-cta.centered { align-self: center; margin: 0 auto; }
+  .card-cta:hover {
+    background: var(--pine);
+    transform: translateX(4px);
+  }
+  .card-cta svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+  }
+  .card-cta:hover svg { transform: translateX(4px); }
+ 
+  /* FOOTER */
+  footer {
+    background: var(--forest);
+    color: var(--sage);
+    text-align: center;
+    padding: 3rem 2rem;
+  }
+  footer .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--snow);
+    margin-bottom: 0.5rem;
+  }
+  footer p { font-size: 0.85rem; line-height: 1.8; }
+  footer .footer-note {
+    margin-top: 1.5rem;
+    font-size: 0.72rem;
+    color: var(--moss);
+    max-width: 500px;
+    margin-inline: auto;
+  }
+ 
+  .pet-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: rgba(90,125,95,0.1);
+    border: 1px solid rgba(90,125,95,0.25);
+    color: var(--pine);
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    letter-spacing: 0.04em;
+    margin-bottom: 1rem;
+  }
+ 
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .property-card { grid-template-columns: 1fr; }
+    .property-card.reverse { direction: ltr; }
+    .card-gallery { min-height: 300px; }
+    .hero-stats { gap: 1.5rem; }
+    .featured-gallery { grid-template-columns: 1fr; grid-template-rows: 2fr 1fr 1fr; height: 500px; }
+    .featured-gallery img:first-child { grid-row: auto; }
+    .featured-highlights { grid-template-columns: repeat(2, 1fr); }
+    .featured-content { padding: 2rem 1.5rem; }
+    .featured-content h3 { font-size: 1.7rem; }
+  }
+  @media (max-width: 600px) {
+    .card-content { padding: 1.5rem; }
+    .card-gallery { min-height: 240px; }
+    .hero-stats { flex-direction: column; gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+ 
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Beech Mountain, North Carolina</div>
+  <h1>Your <em>Mountain</em> Escape Awaits</h1>
+  <p class="hero-sub">Six handpicked retreats by Abril & Christopher — Superhosts with 10 years of welcoming guests to the highest town east of the Mississippi.</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num">6</div>
+      <div class="hero-stat-label">Properties</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">1,400+</div>
+      <div class="hero-stat-label">Reviews</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">10yr</div>
+      <div class="hero-stat-label">Superhosts</div>
+    </div>
+  </div>
+  <div class="scroll-cue">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  </div>
+</section>
+ 
+<!-- PROPERTIES -->
+<section class="properties">
+  <div class="section-header">
+    <h2>Our Properties</h2>
+    <p>From intimate studios to a 17-guest group retreat — every stay is pet-friendly and built for year-round mountain adventure.</p>
+  </div>
+ 
+  <!-- FEATURED: LUXURY ON BEECH -->
+  <article class="featured-card">
+    <span class="featured-ribbon">★ Featured · Groups & Families</span>
+    <div class="featured-gallery">
+      <img src="https://a0.muscache.com/im/pictures/miso/Hosting-776384087207919373/original/43978be2-6fe5-43e4-a019-1d0287852a15.jpeg?im_w=1200" alt="Luxury on Beech - Main" loading="lazy">
+      <img src="https://i.ibb.co/gb4fc407/Captura-de-pantalla-2026-04-16-a-la-s-7-19-21.png_W=720" alt="Captura de pantalla 2026 04 16 a la(s) 7 19 21" border="0">
+      <img src="https://i.ibb.co/xqnjF4sd/Captura-de-pantalla-2026-04-16-a-la-s-7-12-53.png_w=720" alt="Captura de pantalla 2026 04 16 a la(s) 7 12 53" border="0">
+    </div>
+    <div class="featured-content">
+      <span class="card-type">Entire Home · 5 BR · Sleeps 17</span>
+      <h3>Luxury on Beech — Family Ready!</h3>
+      <div class="featured-meta">
+        <span class="card-rating">★ 4.87</span>
+        <span class="card-details">15 reviews · 16+ guests · 5 BR · 9 beds · 3 full bathrooms · 2 half bathrooms </span>
+      </div>
+      <p class="featured-desc">Perfect for large families and groups traveling together. Two full kitchens, two living areas, and separate upper/lower levels make it ideal for multiple families. Fully equipped for kids with cribs, games, toys, foosball & air hockey.</p>
+ 
+      <div class="featured-highlights">
+        <div class="highlight">
+          <div class="highlight-icon">👨‍👩‍👧‍👦</div>
+          <div class="highlight-text">Sleeps up to 17 across 5 BR / 9 beds </div>
+        </div>
+        <div class="highlight">
+          <div class="highlight-icon">🍳</div>
+          <div class="highlight-text">2 full kitchens + 2 living areas</div>
+        </div>
+        <div class="highlight">
+          <div class="highlight-icon">🎮</div>
+          <div class="highlight-text">Foosball, air hockey, ping pong, toys & games</div>
+        </div>
+        <div class="highlight">
+          <div class="highlight-icon">⛳</div>
+          <div class="highlight-text">Steps from Beech Mountain Golf Course</div>
+        </div>
+      </div>
+ 
+      <span class="pet-badge">🐾 Pet-friendly</span>
+      <br>
+      <a href="https://airbnb.com/h/luxuryonbeech" target="_blank" class="card-cta centered">
+        View on Airbnb
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </article>
+ 
+  <!-- SUNSET SKI CABIN -->
+  <article class="property-card">
+    <div class="card-gallery">
+      <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6OTgxMzE5Nzk4NzExMDEyNTg5/original/2a469a66-d04e-46d1-84bb-5e960fcd42a1.png?im_w=720" alt="Sunset Ski Cabin - Main" loading="lazy">
+      <img src="https://i.ibb.co/WNC6sbyY/Captura-de-pantalla-2026-04-16-a-la-s-7-22-26.png" alt="Captura de pantalla 2026 04 16 a la(s) 7 22 26_w=720" border="0" loading="lazy">
+      <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-981319798711012589/original/1a640ba5-2529-4103-a438-d2cfccf098bb.jpeg?im_w=720" alt="Kitchen" loading="lazy">
+    </div>
+    <div class="card-content">
+      <span class="card-type">Apartment · 1,500 sq ft · Private Entry</span>
+      <h3>Beech Ski Apt — Spacious Family Retreat</h3>
+      <div class="card-meta">
+        <span class="card-rating">★ 5.0</span>
+        <span class="card-details">8 reviews · 8 guests · 2 BR · 4 beds · 1.5 baths</span>
+      </div>
+      <p class="card-desc">A perfect-rated 1,500 sq ft private apartment renovated in 2025. King suite, bunk bed with trundle, air hockey, kids game area, fire pit, hammock, and a huge backyard.</p>
+      <div class="highlights">
+        <div class="highlight"><div class="highlight-icon">⭐</div><span>Perfect 5.0 rating — 100% 5-star location</span></div>
+        <div class="highlight"><div class="highlight-icon">🏠</div><span>1,500 sq ft fully private apartment, separate entrance</span></div>
+        <div class="highlight"><div class="highlight-icon">🎮</div><span>Air hockey, foosball, play kitchen & reading nooks</span></div>
+        <div class="highlight"><div class="highlight-icon">🔥</div><span>Outdoor fire pit, hammock, & swinging chair</span></div>
+      </div>
+      <span class="pet-badge">🐾 Pet-friendly (bowls, food & treats provided!)</span>
+      <a href="https://airbnb.com/h/sunsetskicabin" target="_blank" class="card-cta">
+        View on Airbnb
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </article>
+ 
+  <!-- BUCK HAUS -->
+  <article class="property-card reverse">
+    <div class="card-gallery">
+      <img src="https://a0.muscache.com/im/pictures/miso/Hosting-18637872/original/9efb0803-476a-4774-9fc3-8f78d07752e2.png?im_w=720" alt="Buck Haus - Main" loading="lazy">
+      <img src="https://a0.muscache.com/im/pictures/5b00f89d-36c8-42bf-8c98-09ee8aa73a10.jpg?im_w=720" alt="Exterior" loading="lazy">
+      <img src="https://a0.muscache.com/im/pictures/0cc30ad2-8a3b-4958-8648-4f3a37236a15.jpg?im_w=720" alt="Bedroom" loading="lazy">
+    </div>
+    <div class="card-content">
+      <span class="card-type">Cabin · Creekside Retreat</span>
+      <h3>Buck Haus — Rustic-Luxe Cabin by the Creek</h3>
+      <div class="card-meta">
+        <span class="card-rating">★ 4.87</span>
+        <span class="card-details">157 reviews · 6 guests · 2 BR · 3 beds · 1.5 baths</span>
+      </div>
+      <p class="card-desc">A charming roundhouse cabin nestled beside Village Creek with a wood-burning fireplace, king adjustable bed, outdoor fire pit, gas grill, and huge yard. Family and baby friendly.</p>
+      <div class="highlights">
+        <div class="highlight"><div class="highlight-icon">🏕️</div><span>Creekside location — hear the water from the deck</span></div>
+        <div class="highlight"><div class="highlight-icon">🔥</div><span>Wood-burning fireplace + outdoor fire pit for s'mores</span></div>
+        <div class="highlight"><div class="highlight-icon">👶</div><span>Baby-friendly: crib, pack & play, changing station</span></div>
+        <div class="highlight"><div class="highlight-icon">🚗</div><span>Parking for 3 cars, large yard, Samsung washer/dryer</span></div>
+      </div>
+      <span class="pet-badge">🐾 Pet-friendly</span>
+      <a href="https://airbnb.com/h/buckhaus" target="_blank" class="card-cta">
+        View on Airbnb
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </article>
+ 
+  <!-- ALL YOUR VACATION NEEDS -->
+  <article class="property-card">
+    <div class="card-gallery">
+      <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTQyMDQ1MDc%3D/original/0f02f565-2de3-4d64-9e65-2cdac9be4c3e.png?im_w=720" alt="All Your Vacation Needs - Main" loading="lazy">
+      <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-14204507/original/454a32cc-b92f-4d43-b7f2-b6c2a4984e57.jpeg?im_w=720" alt="Bedroom" loading="lazy">
+      <img src="https://i.ibb.co/svKqgFGt/Captura-de-pantalla-2026-04-16-a-la-s-7-25-24.png_w=720" alt="Captura de pantalla 2026 04 16 a la(s) 7 25 24" border="0" loading="lazy">
+    </div>
+    <div class="card-content">
+      <span class="card-type">Condo · Walk to Slopes</span>
+      <h3>All Your Vacation Needs!</h3>
+      <div class="card-meta">
+        <span class="card-rating">★ 4.8</span>
+        <span class="card-details">347 reviews · 4 guests · 1 BR · 2 beds · 1 bath</span>
+      </div>
+      <p class="card-desc">Park at the condo and walk right to the ski lift. A beautifully decorated retreat with brand-new decks, Roku streaming, and a fully stocked kitchen.</p>
+      <div class="highlights">
+        <div class="highlight"><div class="highlight-icon">🎿</div><span>Walk directly to Beech Mountain ski lift</span></div>
+        <div class="highlight"><div class="highlight-icon">🛏️</div><span>Two queen beds, room-darkening shades</span></div>
+        <div class="highlight"><div class="highlight-icon">✨</div><span>Brand-new decks, flooring & windows (2025)</span></div>
+        <div class="highlight"><div class="highlight-icon">🏊</div><span>Optional Beech Mountain Club access</span></div>
+      </div>
+      <span class="pet-badge">🐾 Pet-friendly</span>
+      <a href="https://airbnb.com/h/allyourvacationneeds" target="_blank" class="card-cta">
+        View on Airbnb
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </article>
+ 
+  <!-- SKI & BIKE DEN -->
+  <article class="property-card reverse">
+    <div class="card-gallery">
+      <img src="https://a0.muscache.com/im/pictures/miso/Hosting-22752063/original/d0698f15-2e29-48c4-acc3-974224633c38.png?im_w=720" alt="Ski & Bike Den - Main" loading="lazy">
+      <img src="https://i.ibb.co/5XdvzdCQ/Captura-de-pantalla-2026-04-16-a-la-s-7-27-47.png_w=720" alt="Captura de pantalla 2026 04 16 a la(s) 7 27 47" border="0" loading="lazy">
+      <img src="https://i.ibb.co/Z1zL6wNN/Captura-de-pantalla-2026-04-16-a-la-s-7-29-48.png_w=720" alt="Captura de pantalla 2026 04 16 a la(s) 7 29 48" border="0" loading="lazy">
+    </div>
+    <div class="card-content">
+      <span class="card-type">Condo · Newly Renovated</span>
+      <h3>Hike, Bike, Wineries! Fireplace & Level Entry</h3>
+      <div class="card-meta">
+        <span class="card-rating">★ 4.7</span>
+        <span class="card-details">325 reviews · 4 guests · 1 BR · 2 beds · 1 bath</span>
+      </div>
+      <p class="card-desc">Fully renovated from top to bottom — white quartz countertops, new kitchen, gas fireplace, and an in-unit washer/dryer combo. Steps from the resort with level entry.</p>
+      <div class="highlights">
+        <div class="highlight"><div class="highlight-icon">🔥</div><span>Gas fireplace & private balcony</span></div>
+        <div class="highlight"><div class="highlight-icon">👑</div><span>King bed + sleeper sofa, newly renovated bath</span></div>
+        <div class="highlight"><div class="highlight-icon">🧺</div><span>In-unit washer/dryer combo (washes & dries in one cycle)</span></div>
+        <div class="highlight"><div class="highlight-icon">♿</div><span>Level entry for easy access</span></div>
+      </div>
+      <span class="pet-badge">🐾 Pet-friendly</span>
+      <a href="https://airbnb.com/h/skiandbikeden" target="_blank" class="card-cta">
+        View on Airbnb
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </article>
+ 
+  <!-- SKI, BIKE, BEAR, REPEAT -->
+  <article class="property-card">
+    <div class="card-gallery">
+      <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MjE2NDE5OTM%3D/original/d7a753c8-af8b-470d-9776-c7dc8a461657.png?im_w=720" alt="Ski Bike Bear Repeat - Main" loading="lazy">
+      <img src="https://a0.muscache.com/im/pictures/miso/Hosting-21641993/original/9f2658d7-c3b8-4772-81ee-7a3678e88ff1.jpeg?im_w=720" alt="Interior" loading="lazy">
+      <img src="https://a0.muscache.com/im/pictures/miso/Hosting-21641993/original/bf045369-09b9-4bdd-8ae3-09b390d05b1a.jpeg?im_w=720" alt="Kitchen" loading="lazy">
+    </div>
+    <div class="card-content">
+      <span class="card-type">Condo · Unbeatable Location</span>
+      <h3>Ski, Bike, Bear, Repeat</h3>
+      <div class="card-meta">
+        <span class="card-rating">★ 4.79</span>
+        <span class="card-details">338 reviews · 4 guests · 1 BR · 2 beds · 1 bath</span>
+      </div>
+      <p class="card-desc">100% of guests gave the location 5 stars. This extra-spacious studio features a king bed, sleeper sofa, fully stocked kitchen, and brand-new decks.</p>
+      <div class="highlights">
+        <div class="highlight"><div class="highlight-icon">📍</div><span>100% 5-star location rating — right across from resort</span></div>
+        <div class="highlight"><div class="highlight-icon">📐</div><span>Extra spacious layout, praised by guests</span></div>
+        <div class="highlight"><div class="highlight-icon">🏔️</div><span>New windows & modernized bathroom</span></div>
+        <div class="highlight"><div class="highlight-icon">📺</div><span>Charter premium TV + streaming apps</span></div>
+      </div>
+      <span class="pet-badge">🐾 Pet-friendly</span>
+      <a href="https://airbnb.com/h/skibikebearrepeat" target="_blank" class="card-cta">
+        View on Airbnb
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </article>
+ 
+</section>
+ 
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Beech Mountain Retreats</div>
+  <p>Hosted with love by Abril & Christopher<br>Superhosts · Beech Mountain, NC</p>
+  <div class="footer-note">All properties are pet-friendly (dogs only). Winter visitors should bring 4WD/AWD or snow chains. Optional Beech Mountain Club access available for $300 transfer fee.</div>
+</footer>
+
+<script src="https://static.app/js/static.js" type="text/javascript"></script>
+</body>
+</html>
